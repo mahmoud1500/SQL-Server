@@ -1,0 +1,48 @@
+Create Database DA310
+Create Table Driver_Licenses_Original
+(
+	Count_of_New_WA_State_Driver_Licenses_and_ID_Cards int,
+	Month int,
+	Year int,
+	IssueDate date,
+	Card_Type_Issued Varchar(50),
+	County_of_Residence Varchar(50),
+	Prior_State_of_USA_Issued_License_or_ID Varchar(50),
+	Country_Issuing_Previous_License_or_ID Varchar(50),
+	ISO_2_Alpha_code varchar(50),
+	ISO_3_Alpha_code Varchar(50),
+	ISO_Numeric_Code INT,
+	IRS_Country_Code Varchar(50),
+	Card_Origin Varchar(50)
+)
+Select * from Driver_Licenses_and_ID_Cards_Tr$
+
+Create Table Driver_licenses (
+	Year int,
+	Month int,
+	Issue_Date date,
+	Card_Type Varchar(50),
+	County Varchar(50),
+	Prior_state Varchar(50),
+	prior_country Varchar(50),
+	Out_of_country_license_transfers Varchar(50)
+	)
+Insert Into Driver_licenses (
+	Year,Month,Issue_Date,Card_Type,County,Prior_state,prior_country,Out_of_country_license_transfers)
+	Select Year, Month,[Issue Date],[Card Type Issued],[County of Residence],[Prior State of USA Issued License or ID],[Country Issuing Previous License or ID],
+	CASE
+		WHEN [Prior State of USA Issued License or ID] ='Not Applicable' THEN 1
+		Else 0
+	END AS INorOutcountry
+	from Driver_Licenses_and_ID_Cards_Tr$
+	
+	Select* from Driver_licenses
+
+	Select * from Driver_licenses
+	where County = 'king'
+
+	Select * from Driver_licenses
+	where Prior_state ='california'
+
+	Select * from Driver_licenses
+	where prior_country ='germany'
